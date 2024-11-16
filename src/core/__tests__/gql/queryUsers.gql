@@ -1,0 +1,14 @@
+query queryUsers {
+  getUsers {
+    id
+    username
+    tags
+    profile {
+      addresses {
+        street
+        city
+        zipCode
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+diff --git a/node_modules/jest-transform-graphql/index.js b/node_modules/jest-transform-graphql/index.js
+index 9e35b9a..a534620 100644
+--- a/node_modules/jest-transform-graphql/index.js
++++ b/node_modules/jest-transform-graphql/index.js
+@@ -4,6 +4,8 @@ module.exports = {
+   process(src) {
+     // call directly the webpack loader with a mocked context 
+     // as graphql-tag/loader leverages `this.cacheable()`
+-    return loader.call({ cacheable() {} }, src);
++    return {
++      code: loader.call({ cacheable() {} }, src)
++    };
+   },
+ };

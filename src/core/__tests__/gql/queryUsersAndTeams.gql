@@ -1,0 +1,18 @@
+query queryUsersAndTeams {
+  getUsers {
+    id
+    username
+    tags
+    profile {
+      addresses {
+        street
+        city
+        zipCode
+      }
+    }
+  }
+  getTeams {
+    id
+    location
+  }
+}
