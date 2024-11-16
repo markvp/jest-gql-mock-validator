@@ -1,0 +1,31 @@
+type Address {
+  street: String!
+  city: String
+  zipCode: String
+}
+
+type Profile {
+  bio: String
+  age: Int!
+  addresses: [Address!]!
+}
+
+type User {
+  id: ID!
+  username: String!
+  email: String
+  profile: Profile
+  tags: [String]
+}
+
+type Team {
+  id: ID!
+  teamName: String!
+  location: String
+}
+
+type Query {
+  getUser(id: ID!): User
+  getUsers: [User!]!
+  getTeams: [Team!]!
+}

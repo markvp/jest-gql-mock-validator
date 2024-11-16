@@ -1,0 +1,16 @@
+query queryUser($userId: ID!) {
+  getUser(id: $userId) {
+    id
+    username
+    email
+    profile {
+      bio
+      age
+      addresses {
+        street
+        city
+        zipCode
+      }
+    }
+  }
+}
