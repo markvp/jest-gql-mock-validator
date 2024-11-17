@@ -1,4 +1,4 @@
-import { getKeys } from "./keyExtractor";
+import { getKeys } from "./getKeys";
 
 /**
  * Validates that the mock data matches the required fields structure.

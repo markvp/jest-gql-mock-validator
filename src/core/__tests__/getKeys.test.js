@@ -1,4 +1,4 @@
-import { getKeys } from "../keyExtractor";
+import { getKeys } from "../getKeys";
 
 describe("getKeys", () => {
   it("flattens a simple object with no nesting", () => {
