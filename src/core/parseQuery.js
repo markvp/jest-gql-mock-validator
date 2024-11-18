@@ -1,6 +1,11 @@
 import { GraphQLList, GraphQLNonNull } from "graphql";
 import { getSchema } from "./getSchema";
+
 const GRAPHQL_FIELD = "Field";
+const GRAPHQL_ROOT_SOURCE_BY_OPERATION = {
+  query: "Query",
+  mutation: "Mutation",
+};
 
 const getFieldType = (_type) =>
   _type instanceof GraphQLNonNull ? _type.ofType : _type;
@@ -18,10 +23,10 @@ const getFieldTypeFromPossibleList = (_type) =>
 export const parseQuery = async ({ definitions }) => {
   const schema = await getSchema();
   const typeMap = schema.getTypeMap();
-  
+
   return Object.assign(
     {},
-    ...definitions.map(({ selectionSet: rootSelections }) => {
+    ...definitions.map(({ operation, selectionSet: rootSelections }) => {
       const checkFields = (
         typeName,
         { selections = [] } = {},
@@ -55,7 +60,10 @@ export const parseQuery = async ({ definitions }) => {
           {}
         );
 
-      return checkFields("Query", rootSelections);
+      return checkFields(
+        GRAPHQL_ROOT_SOURCE_BY_OPERATION[operation],
+        rootSelections
+      );
     })
   );
 };

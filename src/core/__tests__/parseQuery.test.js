@@ -1,5 +1,6 @@
 import path from "path";
 import { parseQuery } from "../parseQuery";
+import mutateUser from "./gql/mutateUser.gql";
 import queryUser from "./gql/queryUser.gql";
 import queryUsers from "./gql/queryUsers.gql";
 import queryUsersAndTeams from "./gql/queryUsersAndTeams.gql";
@@ -67,6 +68,17 @@ describe("parseQuery", () => {
       getTeams: true,
       "getTeams.id": true,
       "getTeams.location": false,
+    });
+  });
+
+  it("parses the deleteUser mutation", async () => {
+    const result = await parseQuery(mutateUser);
+
+    expect(result).toEqual({
+      deleteUser: false,
+      "deleteUser.id": true,
+      "deleteUser.username": true,
+      "deleteUser.email": false,
     });
   });
 });
