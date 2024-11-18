@@ -1,17 +1,28 @@
-import { getQueryParser } from "../queryParser";
-import schemaAST from "./schema.graphql";
+import path from "path";
+import { parseQuery } from "../parseQuery";
+import mutateUser from "./gql/mutateUser.gql";
 import queryUser from "./gql/queryUser.gql";
 import queryUsers from "./gql/queryUsers.gql";
 import queryUsersAndTeams from "./gql/queryUsersAndTeams.gql";
-import { buildASTSchema } from "graphql";
+import { loadConfig } from "graphql-config";
 
-const schema = buildASTSchema(schemaAST);
-// Build schema from .graphql string
-const parseQuery = getQueryParser(schema);
+const actualGraphqlConfig = jest.requireActual("graphql-config");
 
-describe("getQueryParser", () => {
-  it("identifies required and non-required fields for single user query", () => {
-    const result = parseQuery(queryUser);
+jest.mock("graphql-config", () => ({
+  loadConfig: jest.fn(),
+}));
+
+beforeAll(() => {
+  loadConfig.mockResolvedValue(
+    actualGraphqlConfig.loadConfig({
+      filepath: path.resolve(__dirname, "../../__tests__/.graphqlrc.yml"),
+    })
+  );
+});
+
+describe("parseQuery", () => {
+  it("identifies required and non-required fields for single user query", async () => {
+    const result = await parseQuery(queryUser);
     expect(result).toEqual({
       getUser: false,
       "getUser.id": true,
@@ -27,8 +38,8 @@ describe("getQueryParser", () => {
     });
   });
 
-  it("identifies required fields with nested arrays and optional nested fields", () => {
-    const result = parseQuery(queryUsers);
+  it("identifies required fields with nested arrays and optional nested fields", async () => {
+    const result = await parseQuery(queryUsers);
     expect(result).toEqual({
       getUsers: true,
       "getUsers.id": true,
@@ -42,8 +53,8 @@ describe("getQueryParser", () => {
     });
   });
 
-  it("handles multiple queries", () => {
-    const result = parseQuery(queryUsersAndTeams);
+  it("handles multiple queries", async () => {
+    const result = await parseQuery(queryUsersAndTeams);
     expect(result).toEqual({
       getUsers: true,
       "getUsers.id": true,
@@ -57,6 +68,17 @@ describe("getQueryParser", () => {
       getTeams: true,
       "getTeams.id": true,
       "getTeams.location": false,
+    });
+  });
+
+  it("parses the deleteUser mutation", async () => {
+    const result = await parseQuery(mutateUser);
+
+    expect(result).toEqual({
+      deleteUser: false,
+      "deleteUser.id": true,
+      "deleteUser.username": true,
+      "deleteUser.email": false,
     });
   });
 });

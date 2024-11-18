@@ -1,4 +1,4 @@
-import { validateMockData } from "../validator";
+import { validateMockData } from "../validateMockData";
 
 describe("validateMockData", () => {
   it("should pass when mock data matches field definitions", () => {

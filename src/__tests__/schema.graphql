@@ -29,3 +29,7 @@ type Query {
   getUsers: [User!]!
   getTeams: [Team!]!
 }
+
+type Mutation {
+  deleteUser(id: ID!): User
+}
