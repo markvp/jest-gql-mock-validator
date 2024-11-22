@@ -28,6 +28,10 @@ describe("mockGqlQuery", () => {
         id: "123",
         username: "testUser",
         email: "test@example.com",
+        profile: {
+          age: 7,
+          addresses: []
+        }
       },
     };
 

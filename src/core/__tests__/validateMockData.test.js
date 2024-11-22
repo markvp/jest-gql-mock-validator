@@ -236,4 +236,27 @@ describe("validateMockData", () => {
 
     expect(validateMockData(fieldDefinitions, response)).toEqual([]);
   });
+
+  it("validates mock data for deleteUser mutation returning empty data", async () => {
+    const fieldDefinitions = {
+      deleteUser: false,
+      "deleteUser.id": true,
+      "deleteUser.username": true,
+      "deleteUser.profile": true,
+    };
+
+    const mockData = {
+      deleteUser: {},
+    };
+
+    // Call validateMockData
+    const errors = validateMockData(fieldDefinitions, mockData);
+
+    // Assert that errors are returned for required fields
+    expect(errors).toEqual([
+      'Missing required field "deleteUser.id" in mock data',
+      'Missing required field "deleteUser.username" in mock data',
+      'Missing required field "deleteUser.profile" in mock data',
+    ]);
+  });
 });

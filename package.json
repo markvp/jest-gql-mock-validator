@@ -1,6 +1,6 @@
 {
   "name": "jest-gql-mock-validator",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "A plugin for jest that validates mocked gql query responses against the defined gql queries",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -37,7 +37,6 @@
   },
   "homepage": "https://github.com/markvp/jest-gql-mock-validator#readme",
   "dependencies": {
-    "graphql": "^14.7.0",
     "graphql-config": "^4.4.0"
   },
   "devDependencies": {
@@ -50,6 +49,7 @@
     "patch-package": "^8.0.0"
   },
   "peerDependencies": {
+    "graphql": "^15.9.0",
     "jest": "^27.0.0 || ^28.0.0 || ^29.0.0"
   }
 }
