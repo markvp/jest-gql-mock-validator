@@ -33,13 +33,15 @@ export const parseQuery = async ({ definitions }) => {
         parentPath = ""
       ) =>
         selections.reduce(
-          (fields, { kind, name: { value: fieldName }, selectionSet }) => {
+          (fields, { kind, alias, name: { value }, selectionSet }) => {
             if (kind !== GRAPHQL_FIELD) {
               return fields;
             }
 
+            const fieldName = alias?.value ?? value;
+
             const {
-              [fieldName]: { type: fieldType },
+              [value]: { type: fieldType },
             } = typeMap[typeName].getFields();
 
             return Object.assign(
