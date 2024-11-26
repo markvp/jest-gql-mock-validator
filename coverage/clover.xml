@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1732621431281" clover="3.2.0">
-  <project timestamp="1732621431281" name="All files">
-    <metrics statements="76" coveredstatements="73" conditionals="55" coveredconditionals="51" methods="20" coveredmethods="20" elements="151" coveredelements="144" complexity="0" loc="76" ncloc="76" packages="2" files="7" classes="7"/>
+<coverage generated="1732624194037" clover="3.2.0">
+  <project timestamp="1732624194037" name="All files">
+    <metrics statements="83" coveredstatements="80" conditionals="59" coveredconditionals="54" methods="22" coveredmethods="22" elements="164" coveredelements="156" complexity="0" loc="83" ncloc="83" packages="2" files="7" classes="7"/>
     <package name="src">
       <metrics statements="6" coveredstatements="4" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
       <file name="index.js" path="/Users/mvanproctor/projects/jest-gql-mock-validator/src/index.js">
@@ -15,7 +15,7 @@
       </file>
     </package>
     <package name="src.core">
-      <metrics statements="70" coveredstatements="69" conditionals="53" coveredconditionals="50" methods="19" coveredmethods="19"/>
+      <metrics statements="77" coveredstatements="76" conditionals="57" coveredconditionals="53" methods="21" coveredmethods="21"/>
       <file name="getKeys.js" path="/Users/mvanproctor/projects/jest-gql-mock-validator/src/core/getKeys.js">
         <metrics statements="4" coveredstatements="4" conditionals="15" coveredconditionals="15" methods="3" coveredmethods="3"/>
         <line num="11" count="4" type="cond" truecount="1" falsecount="0"/>
@@ -29,7 +29,7 @@
         <line num="5" count="6" type="stmt"/>
         <line num="6" count="6" type="stmt"/>
         <line num="7" count="6" type="stmt"/>
-        <line num="10" count="17" type="stmt"/>
+        <line num="10" count="18" type="stmt"/>
       </file>
       <file name="mockGqlQuery.js" path="/Users/mvanproctor/projects/jest-gql-mock-validator/src/core/mockGqlQuery.js">
         <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
@@ -41,25 +41,32 @@
         <line num="10" count="3" type="stmt"/>
       </file>
       <file name="parseQuery.js" path="/Users/mvanproctor/projects/jest-gql-mock-validator/src/core/parseQuery.js">
-        <metrics statements="18" coveredstatements="17" conditionals="17" coveredconditionals="14" methods="6" coveredmethods="6"/>
+        <metrics statements="25" coveredstatements="24" conditionals="21" coveredconditionals="17" methods="8" coveredmethods="8"/>
         <line num="4" count="3" type="stmt"/>
         <line num="5" count="3" type="stmt"/>
-        <line num="10" count="3" type="stmt"/>
-        <line num="11" count="76" type="cond" truecount="2" falsecount="0"/>
-        <line num="12" count="3" type="stmt"/>
-        <line num="13" count="38" type="cond" truecount="2" falsecount="0"/>
-        <line num="23" count="3" type="stmt"/>
-        <line num="24" count="13" type="stmt"/>
-        <line num="25" count="13" type="stmt"/>
-        <line num="27" count="13" type="stmt"/>
-        <line num="30" count="13" type="stmt"/>
-        <line num="35" count="51" type="stmt"/>
-        <line num="37" count="129" type="cond" truecount="1" falsecount="1"/>
-        <line num="38" count="0" type="stmt"/>
-        <line num="41" count="129" type="cond" truecount="2" falsecount="0"/>
-        <line num="45" count="129" type="stmt"/>
-        <line num="47" count="129" type="stmt"/>
-        <line num="65" count="13" type="stmt"/>
+        <line num="6" count="3" type="stmt"/>
+        <line num="11" count="3" type="stmt"/>
+        <line num="12" count="82" type="cond" truecount="2" falsecount="0"/>
+        <line num="13" count="3" type="stmt"/>
+        <line num="14" count="41" type="cond" truecount="2" falsecount="0"/>
+        <line num="24" count="3" type="stmt"/>
+        <line num="25" count="14" type="stmt"/>
+        <line num="26" count="14" type="stmt"/>
+        <line num="31" count="14" type="stmt"/>
+        <line num="33" count="15" type="stmt"/>
+        <line num="38" count="14" type="stmt"/>
+        <line num="39" count="1" type="stmt"/>
+        <line num="42" count="14" type="stmt"/>
+        <line num="45" count="14" type="stmt"/>
+        <line num="50" count="56" type="stmt"/>
+        <line num="52" count="141" type="cond" truecount="2" falsecount="0"/>
+        <line num="53" count="1" type="stmt"/>
+        <line num="62" count="140" type="cond" truecount="1" falsecount="1"/>
+        <line num="63" count="0" type="stmt"/>
+        <line num="66" count="140" type="cond" truecount="2" falsecount="0"/>
+        <line num="70" count="140" type="stmt"/>
+        <line num="72" count="140" type="stmt"/>
+        <line num="90" count="14" type="stmt"/>
       </file>
       <file name="toMatchGqlMock.js" path="/Users/mvanproctor/projects/jest-gql-mock-validator/src/core/toMatchGqlMock.js">
         <metrics statements="6" coveredstatements="6" conditionals="2" coveredconditionals="2" methods="3" coveredmethods="3"/>

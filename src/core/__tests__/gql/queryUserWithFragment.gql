@@ -1,0 +1,20 @@
+query queryUser($userId: ID!) {
+  getUser(id: $userId) {
+    ...UserFragment
+    profile {
+      bio
+      age
+      addresses {
+        street
+        city
+        zipCode
+      }
+    }
+  }
+}
+
+fragment UserFragment on User {
+  id
+  username
+  email
+}
