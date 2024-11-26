@@ -2,6 +2,7 @@ import { GraphQLList, GraphQLNonNull } from "graphql";
 import { getSchema } from "./getSchema";
 
 const GRAPHQL_FIELD = "Field";
+const GRAPHQL_FRAGMENT_SPREAD = "FragmentSpread";
 const GRAPHQL_ROOT_SOURCE_BY_OPERATION = {
   query: "Query",
   mutation: "Mutation",
@@ -24,9 +25,23 @@ export const parseQuery = async ({ definitions }) => {
   const schema = await getSchema();
   const typeMap = schema.getTypeMap();
 
+  const {
+    FragmentDefinition: fragments = [],
+    OperationDefinition: operations = [],
+  } = definitions.reduce(
+    (result, { kind, ...definition }) => (
+      (result[kind] ??= []).push(definition), result
+    ),
+    {}
+  );
+
+  const fragmentSelectionsByName = Object.fromEntries(
+    fragments.map(({ name: { value }, selectionSet }) => [value, selectionSet])
+  );
+
   return Object.assign(
     {},
-    ...definitions.map(({ operation, selectionSet: rootSelections }) => {
+    ...operations.map(({ operation, selectionSet: rootSelections }) => {
       const checkFields = (
         typeName,
         { selections = [] } = {},
@@ -34,6 +49,16 @@ export const parseQuery = async ({ definitions }) => {
       ) =>
         selections.reduce(
           (fields, { kind, alias, name: { value }, selectionSet }) => {
+            if (kind === GRAPHQL_FRAGMENT_SPREAD) {
+              return Object.assign(
+                fields,
+                checkFields(
+                  typeName,
+                  fragmentSelectionsByName[value],
+                  parentPath,
+                )
+              );
+            }
             if (kind !== GRAPHQL_FIELD) {
               return fields;
             }
