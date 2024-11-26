@@ -3,6 +3,7 @@ import { parseQuery } from "../parseQuery";
 import mutateUser from "./gql/mutateUser.gql";
 import queryUser from "./gql/queryUser.gql";
 import queryUsers from "./gql/queryUsers.gql";
+import queryAliasedUsers from "./gql/queryAliasedUsers.gql";
 import queryUsersAndTeams from "./gql/queryUsersAndTeams.gql";
 import { loadConfig } from "graphql-config";
 
@@ -50,6 +51,21 @@ describe("parseQuery", () => {
       "getUsers.profile.addresses.street": true,
       "getUsers.profile.addresses.city": false,
       "getUsers.profile.addresses.zipCode": false,
+    });
+  });
+
+  it("identifies aliased queries", async () => {
+    const result = await parseQuery(queryAliasedUsers);
+    expect(result).toEqual({
+      users: true,
+      "users.id": true,
+      "users.username": true,
+      "users.tags": false,
+      "users.profile": false,
+      "users.profile.addresses": true,
+      "users.profile.addresses.street": true,
+      "users.profile.addresses.city": false,
+      "users.profile.addresses.zipCode": false,
     });
   });
 
